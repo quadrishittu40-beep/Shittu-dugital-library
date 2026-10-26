@@ -55,14 +55,14 @@ export default function Home() {
   return (
     <div className={`app-shell ${dark ? "dark-preview" : ""}`} style={dark ? { background: "#111a29", color: "#e9edf3" } : undefined}>
       <aside className="sidebar">
-        <div className="brand"><div className="brand-mark">M</div><div><div className="brand-title">My Digital Library</div><div className="brand-sub">KNOWLEDGE • PRESERVED</div></div></div>
+        <div className="brand"><div className="brand-mark"><img src="/icon.svg" alt=""/></div><div><div className="brand-title">My Digital Library</div><div className="brand-sub">KNOWLEDGE • PRESERVED</div></div></div>
         <div><div className="nav-label">WORKSPACE</div><div className="nav-group">{navItems.map(item => <button key={item.label} onClick={() => go(item.label)} className={`nav-link ${activeNav === item.label ? "active" : ""}`}><item.icon />{item.label}</button>)}</div></div>
         <div><div className="nav-label">MANAGE</div><div className="nav-group">{navBottom.map(item => <button key={item.label} onClick={() => go(item.label)} className={`nav-link ${activeNav === item.label ? "active" : ""}`}><item.icon />{item.label}</button>)}</div></div>
-        <div className="nav-bottom"><div className="profile-mini"><div className="portrait-placeholder">M</div><div><strong>Library Owner</strong><small>Personal workspace</small></div></div></div>
+        <div className="nav-bottom"><div className="profile-mini"><img className="profile-photo" src="/profile.png" alt="Library owner portrait"/><div><strong>Library Owner</strong><small>Personal workspace</small></div></div></div>
       </aside>
 
       <main className="main">
-        <div className="mobile-brand"><div className="brand-mark">M</div><div><div className="brand-title">My Digital Library</div><div className="brand-sub" style={{ color: "#9a762f", fontSize: "9px" }}>KNOWLEDGE • PRESERVED</div></div></div>
+        <div className="mobile-brand"><div className="brand-mark"><img src="/icon.svg" alt=""/></div><div><div className="brand-title">My Digital Library</div><div className="brand-sub" style={{ color: "#9a762f", fontSize: "9px" }}>KNOWLEDGE • PRESERVED</div></div></div>
         <header className="topbar">
           <div className="breadcrumb">Workspace <ChevronRight size={12} style={{ display: "inline", verticalAlign: "middle" }} /> {activeNav}</div>
           <div className="top-actions">
@@ -88,7 +88,7 @@ export default function Home() {
           </div>
           <label className="hero-portrait" title="Upload your portrait">
             <input type="file" accept="image/*" hidden onChange={e => { const f=e.target.files?.[0]; if(f){setPortrait(URL.createObjectURL(f));setPortraitName(f.name);notify("Portrait preview updated. Save branding settings when backend is connected.");}}}/>
-            {portrait ? <img src={portrait} alt="Portrait preview" style={{width:"100%",height:"100%",objectFit:"cover",borderRadius:"inherit"}}/> : <div><UserRound/><span>Your portrait<br/>will appear here</span></div>}
+            {<img src={portrait || "/profile.png"} alt="Library owner portrait" style={{width:"100%",height:"100%",objectFit:"cover",objectPosition:"center top",borderRadius:"inherit"}}/>}
           </label>
         </section>
 
@@ -121,7 +121,7 @@ export default function Home() {
 
         <div className="section-heading"><div><h3>Explore by subject</h3><p>Follow your curiosity wherever it leads.</p></div><button className="text-link" onClick={()=>go("Explore Library")}>Browse all →</button></div>
         <section className="category-grid">{categories.map(c=><button className="category-card" key={c.name} onClick={()=>{setQuery(c.name);notify(`Showing matching works for ${c.name}.`)}}><span className="category-symbol"><c.icon/></span><span><strong>{c.name}</strong><small>{c.count} publications</small></span></button>)}</section>
-        <div className="notice"><Sparkles/><div><strong>Make this space yours.</strong> Upload your portrait using the framed placeholder above. This first foundation uses preview-only local state; account authentication, persistent database storage and secure document uploads are the next implementation stages.</div></div>
+        <div className="notice"><Sparkles/><div><strong>Make this space yours.</strong> Your portrait is used as the profile picture and welcome visual. This first foundation uses preview-only local state; account authentication, persistent database storage and secure document uploads are the next implementation stages.</div></div>
       </main>
 
       <nav className="mobile-nav" aria-label="Mobile navigation">{[{label:"Home",icon:LayoutDashboard},{label:"My Works",icon:Feather},{label:"Explore",icon:LibraryBig},{label:"Saved",icon:Bookmark},{label:"Settings",icon:Settings2}].map(n=><button key={n.label} onClick={()=>go(n.label==="Home"?"Dashboard":n.label)} className={activeNav===(n.label==="Home"?"Dashboard":n.label)?"active":""}><n.icon/><span>{n.label}</span></button>)}</nav>
