@@ -6,8 +6,8 @@ A responsive Next.js foundation for a personal writing studio and public reading
 
 This repository contains the **Stage 1 foundation**:
 - Responsive desktop/mobile dashboard and navigation
-- Navy-and-gold scholarly visual system
-- Portrait upload preview placeholder (no portrait has been supplied yet)
+- Light-blue, navy-and-gold scholarly visual system
+- Supplied portrait integrated as profile photo and welcome visual
 - Search across works created in the current page session
 - Create-work modal and document-selection UI
 - Theme toggle and PWA manifest/icon starter
@@ -98,3 +98,7 @@ The dashboard includes a marked portrait placeholder. Uploading a portrait curre
 - Validate MIME type, file extension, file size, and content where possible.
 - Use public-domain, open-access, licensed, or otherwise authorized content. For other copyrighted books, store metadata and a legitimate source link rather than an unauthorized copy.
 - Add audit logs and backup/restore procedures before production use.
+
+
+## Branding assets
+The supplied portrait is included at `public/profile.png` and is used in the app profile and welcome panel. The book icon uses a light-blue background. Replace `public/profile.png` to update the portrait.
